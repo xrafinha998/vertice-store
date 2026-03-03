@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vértice Store – Apps Originais e Seguros</title>
+<meta name="description" content="Loja de aplicativos 100% original, livre de direitos autorais.">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-4950043631682039" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#080b12;--bg2:#0d1118;--card:#111825;--card2:#161e2e;--border:#1c2640;--ac:#00e5a0;--a2:#00aaff;--a3:#ff6b35;--danger:#ff4560;--warn:#ffc947;--star:#ffd700;--text:#cdd6f4;--muted:#5a6a8a;--light:#8899bb;--r:12px;--sh:0 8px 32px rgba(0,0,0,.6);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+a{color:var(--a2);text-decoration:none;}
+button{cursor:pointer;border:none;font-family:inherit;}
+input,textarea,select{font-family:inherit;color:var(--text);outline:none;}
+img{display:block;object-fit:cover;}
+/* overlay */
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;backdrop-filter:blur(6px);align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;}
+.ov.on{display:flex;}
+@keyframes pop{from{opacity:0;transform:scale(.93) translateY(14px);}to{opacity:1;transform:none;}}
+/* box */
+.box{background:var(--card2);border:1px solid var(--border);border-radius:18px;width:100%;padding:1.7rem;box-shadow:var(--sh);animation:pop .28s ease;position:relative;margin:auto;}
+.bx-x{position:absolute;top:.85rem;right:.85rem;background:var(--border);color:var(--text);width:29px;height:29px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;flex-shrink:0;}
+.bx-x:hover{background:var(--danger);color:#fff;}
+/* fields */
+.field{margin-bottom:.95rem;}
+.field label{display:block;font-size:.72rem;font-weight:700;color:var(--light);margin-bottom:.28rem;letter-spacing:.5px;text-transform:uppercase;}
+.fi{width:100%;padding:.68rem .92rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:.9rem;transition:.2s;color:var(--text);}
+.fi:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(0,229,160,.09);}
+.fi::placeholder{color:var(--muted);}
+select.fi option{background:var(--bg2);}
+.hint{font-size:.7rem;color:var(--muted);margin-top:.22rem;}
+.pw-bar{height:3px;border-radius:2px;margin-top:.3rem;transition:.3s;background:var(--border);width:0;}
+/* msg */
+.msg{padding:.52rem .88rem;border-radius:8px;font-size:.81rem;margin-bottom:.85rem;display:none;}
+.msg.on{display:block;}
+.msg.err{background:rgba(255,69,96,.1);border:1px solid rgba(255,69,96,.3);color:var(--danger);}
+.msg.ok{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.3);color:var(--ac);}
+/* btn */
+.btn{padding:.74rem;font-weight:800;font-size:.9rem;border-radius:9px;letter-spacing:.4px;transition:.2s;cursor:pointer;border:none;width:100%;}
+.btn.green{background:var(--ac);color:#000;}
+.btn.green:hover{box-shadow:0 5px 18px rgba(0,229,160,.3);transform:translateY(-1px);}
+.btn.blue{background:var(--a2);color:#fff;}
+.btn.blue:hover{opacity:.88;}
+.btn.red2{background:var(--danger);color:#fff;}
+.btn.ghost{background:none;border:1px solid var(--border);color:var(--muted);}
+.btn.ghost:hover{border-color:var(--danger);color:var(--danger);}
+/* auth */
+#authBox{max-width:410px;}
+.alogo{font-size:1.8rem;font-weight:900;color:var(--ac);letter-spacing:3px;text-align:center;margin-bottom:.2rem;}
+.asub{text-align:center;color:var(--muted);font-size:.82rem;margin-bottom:1.5rem;}
+.tabs{display:flex;background:var(--bg2);border-radius:8px;padding:3px;margin-bottom:1.4rem;}
+.tab{flex:1;padding:.52rem;background:none;color:var(--muted);border-radius:6px;font-weight:600;font-size:.86rem;transition:.2s;}
+.tab.on{background:var(--ac);color:#000;}
+/* upload */
+#upBox{max-width:510px;max-height:91vh;overflow-y:auto;}
+.icon-row{display:flex;flex-wrap:wrap;gap:.28rem;margin-top:.28rem;}
+.iopt{font-size:1.38rem;padding:.22rem .4rem;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.12s;line-height:1;user-select:none;}
+.iopt:hover,.iopt.on{border-color:var(--ac);background:rgba(0,229,160,.09);}
+.img-prev{width:100%;height:110px;border-radius:9px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:.35rem;}
+.img-prev img{width:100%;height:100%;object-fit:cover;}
+.img-prev .ph{color:var(--muted);font-size:.78rem;text-align:center;}
+/* url verify */
+.uv{border-radius:8px;padding:.62rem .88rem;font-size:.75rem;margin-bottom:.7rem;display:flex;align-items:flex-start;gap:.55rem;}
+.uv.safe{background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.17);}
+.uv.warn{background:rgba(255,201,71,.06);border:1px solid rgba(255,201,71,.18);color:var(--warn);}
+.uv.danger{background:rgba(255,69,96,.05);border:1px solid rgba(255,69,96,.18);color:var(--danger);}
+.uv-ico{font-size:1rem;flex-shrink:0;margin-top:.05rem;}
+.vchecks{margin-top:.3rem;display:flex;flex-direction:column;gap:.1rem;}
+.vck{font-size:.67rem;display:flex;gap:.28rem;}
+.vck.p{color:var(--ac);}
+.vck.f{color:var(--danger);}
+/* detail */
+#detailBox{max-width:590px;max-height:91vh;overflow-y:auto;}
+.d-hero{width:100%;height:170px;border-radius:11px;overflow:hidden;margin-bottom:.9rem;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.d-hero img{width:100%;height:100%;object-fit:cover;}
+.d-hdr{display:flex;gap:.85rem;align-items:flex-start;margin-bottom:.9rem;}
+.d-ico{width:62px;height:62px;border-radius:13px;flex-shrink:0;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2.4rem;overflow:hidden;}
+.d-ico img{width:62px;height:62px;border-radius:13px;}
+.d-name{font-size:1.15rem;font-weight:900;margin-bottom:.18rem;}
+.d-cat{font-size:.73rem;color:var(--a2);font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.d-ver{font-size:.68rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:.12rem;}
+.d-lic{font-size:.67rem;color:var(--ac);margin-top:.08rem;}
+.dstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.58rem;margin:1rem 0;}
+.sb{background:var(--bg2);border-radius:8px;padding:.62rem;text-align:center;}
+.sv{font-size:1.08rem;font-weight:800;color:var(--ac);}
+.sl{font-size:.64rem;color:var(--muted);margin-top:.1rem;text-transform:uppercase;letter-spacing:.4px;}
+.ddesc{color:var(--light);font-size:.84rem;line-height:1.68;margin-bottom:.9rem;}
+.tag-list{display:flex;flex-wrap:wrap;gap:.28rem;margin-bottom:.9rem;}
+.tag{padding:.18rem .52rem;background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.13);color:var(--ac);border-radius:20px;font-size:.67rem;font-weight:600;}
+.dl-main{width:100%;padding:.88rem;font-weight:900;font-size:.93rem;border-radius:11px;letter-spacing:.4px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:.45rem;margin-bottom:.55rem;cursor:pointer;border:none;}
+.dl-main.safe{background:var(--ac);color:#000;}
+.dl-main.safe:hover{box-shadow:0 6px 22px rgba(0,229,160,.35);transform:translateY(-2px);}
+.dl-main.warn{background:var(--warn);color:#000;}
+.dl-main.blocked{background:var(--border);color:var(--muted);cursor:not-allowed;}
+.btn-rpt{width:100%;padding:.52rem;background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:.78rem;transition:.2s;}
+.btn-rpt:hover{border-color:var(--danger);color:var(--danger);}
+/* reviews */
+.rv-sec{margin-top:.9rem;}
+.rv-title{font-weight:800;margin-bottom:.65rem;font-size:.88rem;}
+.rv-form{background:var(--bg2);border-radius:10px;padding:.8rem;margin-bottom:.8rem;}
+.star-row{display:flex;gap:.18rem;margin-bottom:.45rem;flex-direction:row-reverse;justify-content:flex-end;}
+.star-row input{display:none;}
+.star-row label{font-size:1.25rem;cursor:pointer;color:var(--border);transition:.12s;}
+.star-row label:hover,.star-row label:hover~label,.star-row input:checked~label{color:var(--star);}
+.rv-form textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:.52rem .72rem;font-size:.8rem;resize:none;height:58px;color:var(--text);}
+.rv-form textarea:focus{border-color:var(--ac);}
+.btn-rv{margin-top:.38rem;padding:.42rem 1rem;background:var(--a2);color:#fff;font-weight:700;border-radius:7px;font-size:.78rem;}
+.rv-card{background:var(--bg2);border-radius:8px;padding:.68rem;margin-bottom:.45rem;}
+.rv-user{font-weight:700;font-size:.77rem;display:flex;align-items:center;gap:.38rem;margin-bottom:.18rem;}
+.rv-ts{font-size:.66rem;color:var(--muted);margin-left:auto;}
+.rv-txt{font-size:.78rem;color:var(--light);line-height:1.58;}
+/* admin */
+#adminBox{max-width:840px;max-height:91vh;overflow-y:auto;}
+.adm-tabs{display:flex;gap:.35rem;margin-bottom:1.1rem;flex-wrap:wrap;}
+.adm-tab{padding:.44rem .92rem;background:var(--bg2);border:1px solid var(--border);border-radius:7px;font-size:.8rem;font-weight:700;color:var(--muted);transition:.2s;cursor:pointer;}
+.adm-tab.on{background:var(--ac);color:#000;border-color:var(--ac);}
+.adm-sec{display:none;}
+.adm-sec.on{display:block;}
+.adm-card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:.82rem;margin-bottom:.55rem;}
+.adm-card-hdr{display:flex;gap:.75rem;align-items:flex-start;}
+.adm-ico{width:46px;height:46px;border-radius:9px;flex-shrink:0;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:1px solid var(--border);overflow:hidden;}
+.adm-ico img{width:46px;height:46px;border-radius:9px;}
+.adm-info{flex:1;min-width:0;}
+.adm-name{font-weight:800;font-size:.88rem;margin-bottom:.15rem;}
+.adm-meta{font-size:.7rem;color:var(--muted);}
+.adm-acts{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.45rem;}
+.ab{padding:.32rem .68rem;border-radius:6px;font-size:.74rem;font-weight:700;transition:.13s;border:none;cursor:pointer;}
+.ab.app{background:var(--ac);color:#000;}
+.ab.rej{background:var(--danger);color:#fff;}
+.ab.edt{background:var(--a2);color:#fff;}
+.ab.del{background:rgba(255,69,96,.13);border:1px solid rgba(255,69,96,.28);color:var(--danger);}
+.ab.feat{background:rgba(255,201,71,.13);border:1px solid rgba(255,201,71,.28);color:var(--warn);}
+.adm-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;margin-bottom:1.1rem;}
+.adm-stat{background:var(--bg2);border-radius:9px;padding:.82rem;text-align:center;}
+.adm-stat .n{font-size:1.45rem;font-weight:900;color:var(--ac);}
+.adm-stat .l{font-size:.68rem;color:var(--muted);margin-top:.12rem;}
+.mod-badge{background:rgba(255,69,96,.15);border:1px solid rgba(255,69,96,.28);color:var(--danger);font-size:.65rem;font-weight:700;padding:.12rem .35rem;border-radius:3px;margin-left:.35rem;}
+.comm-badge{background:rgba(255,201,71,.12);border:1px solid rgba(255,201,71,.22);color:var(--warn);font-size:.65rem;font-weight:700;padding:.12rem .35rem;border-radius:3px;margin-left:.35rem;}
+.edit-in{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:.5rem .75rem;font-size:.83rem;width:100%;margin-bottom:.35rem;color:var(--text);}
+.edit-in:focus{border-color:var(--ac);}
+/* report */
+#reportBox{max-width:380px;}
+/* navbar */
+.nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.68rem 1.3rem;display:flex;align-items:center;gap:.75rem;}
+.nav-logo{font-size:1.22rem;font-weight:900;color:var(--ac);letter-spacing:2px;white-space:nowrap;cursor:pointer;flex-shrink:0;}
+.nav-logo span{color:var(--text);font-weight:300;}
+.nav-sw{flex:1;max-width:450px;position:relative;}
+.nav-sw input{width:100%;padding:.56rem 1rem .56rem 2.45rem;background:var(--card);border:1px solid var(--border);border-radius:30px;color:var(--text);font-size:.86rem;transition:.2s;}
+.nav-sw input:focus{border-color:var(--a2);box-shadow:0 0 0 3px rgba(0,170,255,.09);}
+.sw-ic{position:absolute;left:.78rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:.88rem;}
+.sdrop{position:absolute;top:calc(100% + 7px);left:0;right:0;background:var(--card2);border:1px solid var(--border);border-radius:11px;max-height:310px;overflow-y:auto;z-index:300;display:none;box-shadow:var(--sh);}
+.sdrop.on{display:block;}
+.si{display:flex;align-items:center;gap:.65rem;padding:.62rem .88rem;cursor:pointer;transition:.12s;}
+.si:hover{background:var(--border);}
+.si-ico{font-size:1.55rem;width:32px;text-align:center;flex-shrink:0;}
+.si-ico img{width:32px;height:32px;border-radius:7px;object-fit:cover;}
+.nav-right{display:flex;align-items:center;gap:.45rem;margin-left:auto;flex-shrink:0;}
+.btn-ln{padding:.44rem 1.05rem;background:none;border:1px solid var(--ac);color:var(--ac);border-radius:30px;font-weight:600;font-size:.78rem;transition:.2s;}
+.btn-ln:hover{background:var(--ac);color:#000;}
+.btn-up{padding:.44rem .88rem;background:var(--a2);color:#fff;border-radius:30px;font-weight:700;font-size:.78rem;transition:.2s;}
+.btn-up:hover{opacity:.86;}
+.uchip{display:flex;align-items:center;gap:.42rem;background:var(--card2);border:1px solid var(--border);border-radius:30px;padding:.36rem .88rem;font-size:.8rem;position:relative;cursor:pointer;}
+.av{width:23px;height:23px;border-radius:50%;background:var(--ac);color:#000;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.68rem;}
+.um{position:absolute;top:calc(100% + 7px);right:0;background:var(--card2);border:1px solid var(--border);border-radius:11px;min-width:160px;box-shadow:var(--sh);z-index:300;display:none;overflow:hidden;}
+.um.on{display:block;}
+.umi{padding:.62rem .88rem;font-size:.82rem;cursor:pointer;transition:.12s;display:flex;align-items:center;gap:.45rem;}
+.umi:hover{background:var(--border);}
+.umi.red{color:var(--danger);}
+/* hero */
+.hero{padding:2rem 1.3rem 1.2rem;background:linear-gradient(160deg,rgba(0,229,160,.04) 0%,transparent 55%);position:relative;overflow:hidden;}
+.hero::after{content:'⬡';position:absolute;right:-2rem;top:-3rem;font-size:16rem;color:rgba(0,229,160,.03);pointer-events:none;font-weight:900;}
+.hero h1{font-size:clamp(1.45rem,4vw,2.2rem);font-weight:900;line-height:1.15;margin-bottom:.5rem;}
+.hero h1 em{color:var(--ac);font-style:normal;}
+.hero p{color:var(--light);max-width:490px;font-size:.91rem;line-height:1.68;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.42rem;margin-top:.95rem;}
+.badge{display:inline-flex;align-items:center;gap:.25rem;padding:.26rem .68rem;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.2);color:var(--ac);border-radius:30px;font-size:.7rem;font-weight:600;}
+/* ads */
+.ad-wrap{width:100%;background:var(--card);border:1px dashed var(--border);border-radius:var(--r);margin:.42rem 0;display:flex;align-items:center;justify-content:center;min-height:90px;}
+.ad-lbl{font-size:.6rem;color:var(--muted);text-align:center;margin-bottom:2px;letter-spacing:1px;text-transform:uppercase;}
+/* cat bar */
+.cat-bar{display:flex;gap:.42rem;overflow-x:auto;padding:.65rem 1.3rem;scrollbar-width:none;border-bottom:1px solid var(--border);}
+.cat-bar::-webkit-scrollbar{display:none;}
+.cc{flex-shrink:0;padding:.4rem .95rem;background:var(--card);border:1px solid var(--border);border-radius:30px;font-size:.79rem;font-weight:600;color:var(--light);cursor:pointer;transition:.2s;white-space:nowrap;}
+.cc:hover,.cc.on{background:var(--ac);color:#000;border-color:var(--ac);}
+/* main */
+.main{padding:1.3rem;max-width:1400px;margin:0 auto;}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;}
+.st{font-size:1.02rem;font-weight:800;display:flex;align-items:center;gap:.42rem;}
+.st::before{content:'';width:4px;height:1rem;background:var(--ac);border-radius:2px;}
+/* featured */
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:.88rem;margin-bottom:1.7rem;}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:.22s;}
+.fc:hover{transform:translateY(-4px);box-shadow:var(--sh),0 0 26px rgba(0,229,160,.09);border-color:rgba(0,229,160,.28);}
+.fc-img{height:125px;position:relative;overflow:hidden;background:var(--bg2);display:flex;align-items:center;justify-content:center;}
+.fc-img img{width:100%;height:100%;object-fit:cover;}
+.fc-ico{font-size:3.3rem;}
+.fc-bdg{position:absolute;top:.52rem;right:.52rem;font-size:.64rem;font-weight:800;padding:.16rem .42rem;border-radius:4px;letter-spacing:.4px;}
+.fc-bdg.hot{background:var(--a3);color:#fff;}
+.fc-bdg.new{background:var(--ac);color:#000;}
+.fc-bdg.mod{background:var(--danger);color:#fff;}
+.fc-body{padding:.82rem;}
+.fc-name{font-weight:800;font-size:.9rem;margin-bottom:.16rem;}
+.fc-desc{color:var(--muted);font-size:.75rem;line-height:1.43;margin-bottom:.62rem;}
+.fc-meta{display:flex;align-items:center;gap:.52rem;}
+.strs{color:var(--star);font-size:.78rem;}
+.dlct{color:var(--muted);font-size:.68rem;}
+.sz{margin-left:auto;font-size:.66rem;background:var(--bg2);padding:.16rem .42rem;border-radius:4px;color:var(--light);}
+/* app list */
+.app-list{display:flex;flex-direction:column;gap:.62rem;margin-bottom:1.7rem;}
+.ar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;gap:.85rem;padding:.82rem .88rem;cursor:pointer;transition:.2s;}
+.ar:hover{border-color:rgba(0,170,255,.28);transform:translateX(3px);}
+.ar.mod-row{border-color:rgba(255,69,96,.18);}
+.ar-ico{width:50px;height:50px;border-radius:10px;flex-shrink:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.58rem;border:1px solid var(--border);overflow:hidden;}
+.ar-ico img{width:50px;height:50px;border-radius:10px;}
+.ar-info{flex:1;min-width:0;}
+.ar-name{font-weight:700;font-size:.88rem;margin-bottom:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ar-cat{font-size:.66rem;color:var(--a2);font-weight:600;letter-spacing:.4px;text-transform:uppercase;}
+.ar-sub{font-size:.66rem;color:var(--muted);margin-top:.08rem;}
+.ar-right{display:flex;flex-direction:column;align-items:flex-end;gap:.23rem;flex-shrink:0;}
+.dl-btn{background:var(--ac);color:#000;font-weight:800;font-size:.72rem;padding:.33rem .78rem;border-radius:20px;transition:.12s;border:none;cursor:pointer;}
+.dl-btn:hover{transform:scale(1.05);}
+.dl-btn.wn{background:var(--warn);color:#000;}
+.dl-btn.bk{background:var(--border);color:var(--muted);pointer-events:none;}
+/* top rated */
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:.68rem;margin-bottom:1.7rem;}
+.hlc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.88rem;text-align:center;cursor:pointer;transition:.2s;position:relative;overflow:hidden;}
+.hlc:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:0 0 16px rgba(0,229,160,.11);}
+.hlc-ico{font-size:1.9rem;margin-bottom:.3rem;height:2.1rem;display:flex;align-items:center;justify-content:center;}
+.hlc-ico img{width:38px;height:38px;border-radius:8px;object-fit:cover;}
+.hlc-name{font-size:.76rem;font-weight:700;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hlc-strs{color:var(--star);font-size:.7rem;}
+.hl-rank{position:absolute;top:.42rem;left:.42rem;font-size:.63rem;font-weight:800;background:var(--ac);color:#000;padding:.07rem .32rem;border-radius:3px;}
+/* com banner */
+.com-ban{background:rgba(255,201,71,.06);border:1px solid rgba(255,201,71,.17);border-radius:var(--r);padding:.62rem .88rem;font-size:.76rem;color:var(--warn);display:flex;align-items:center;gap:.48rem;margin-bottom:.65rem;}
+/* toast */
+.tw{position:fixed;bottom:1.2rem;right:1.2rem;z-index:9999;display:flex;flex-direction:column;gap:.38rem;}
+.toast{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:.65rem .95rem;font-size:.8rem;box-shadow:var(--sh);animation:tIn .26s ease;display:flex;align-items:center;gap:.45rem;max-width:275px;}
+.toast.success{border-color:rgba(0,229,160,.38);}
+.toast.error{border-color:rgba(255,69,96,.38);}
+.toast.info{border-color:rgba(0,170,255,.28);}
+.toast.warn{border-color:rgba(255,201,71,.32);}
+@keyframes tIn{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:none;}}
+@keyframes tOut{to{opacity:0;transform:translateX(36px);}}
+/* cookie */
+.ck-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(13,17,24,.97);border-top:1px solid var(--border);padding:.85rem 1.3rem;display:flex;align-items:center;flex-wrap:wrap;gap:.62rem;backdrop-filter:blur(8px);transition:.36s;}
+.ck-bar.hidden{transform:translateY(100%);}
+.ck-text{flex:1;min-width:185px;font-size:.77rem;color:var(--light);}
+.ck-text a{color:var(--ac);}
+.ckb{padding:.42rem .92rem;border-radius:20px;font-weight:700;font-size:.77rem;transition:.2s;border:none;cursor:pointer;}
+.ck-ok{background:var(--ac);color:#000;}
+.ck-rej{background:none;border:1px solid var(--border)!important;color:var(--muted);}
+/* footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.6rem 1.3rem;margin-top:1.7rem;}
+.fg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:1.5rem;max-width:940px;margin:0 auto 1.2rem;}
+.fc-col h4{font-weight:800;margin-bottom:.68rem;color:var(--ac);font-size:.84rem;letter-spacing:.5px;}
+.fc-col a{display:block;color:var(--muted);font-size:.78rem;margin-bottom:.32rem;transition:.12s;cursor:pointer;}
+.fc-col a:hover{color:var(--text);}
+.ft-bot{text-align:center;color:var(--muted);font-size:.72rem;border-top:1px solid var(--border);padding-top:.95rem;}
+.ft-bot em{color:var(--ac);font-style:normal;}
+/* empty */
+.empty{text-align:center;padding:2.3rem 1rem;color:var(--muted);}
+.empty div{font-size:2.2rem;margin-bottom:.62rem;}
+@media(max-width:600px){.fg{grid-template-columns:1fr;}.nav{padding:.56rem .88rem;}.main{padding:.88rem;}}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div class="ov" id="authOv">
+  <div class="box" id="authBox">
+    <button class="bx-x" onclick="closeAuth()">✕</button>
+    <div class="alogo">⬡ VÉRTICE</div>
+    <p class="asub">Loja de apps originais e seguros</p>
+    <div class="tabs"><button class="tab on" id="tL" onclick="swTab('l')">Entrar</button><button class="tab" id="tR" onclick="swTab('r')">Criar conta</button></div>
+    <div id="authMsg" class="msg"></div>
+    <div id="fL">
+      <div class="field"><label>Usuário</label><input class="fi" type="text" id="lU" placeholder="seu_usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="field"><label>Senha</label><input class="fi" type="password" id="lP" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn green" onclick="doLogin()">Entrar</button>
+    </div>
+    <div id="fR" style="display:none">
+      <div class="field"><label>Usuário</label><input class="fi" type="text" id="rU" placeholder="nome_usuario" maxlength="20" autocomplete="username" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'')"></div>
+      <div class="field">
+        <label>Senha</label>
+        <input class="fi" type="password" id="rP" placeholder="mínimo 8 caracteres" autocomplete="new-password" oninput="chkStr(this.value)">
+        <div class="pw-bar" id="pwBar"></div>
+        <div class="hint" id="pwHint">Use letras, números e símbolos.</div>
+      </div>
+      <div class="field"><label>Confirmar senha</label><input class="fi" type="password" id="rP2" placeholder="repita a senha" onkeydown="if(event.key==='Enter')doReg()"></div>
+      <button class="btn green" onclick="doReg()">Criar conta</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD -->
+<div class="ov" id="upOv">
+  <div class="box" id="upBox">
+    <button class="bx-x" onclick="closeUp()">✕</button>
+    <h2 style="font-size:1.18rem;font-weight:900;color:var(--a2);margin-bottom:.2rem">📤 Enviar APK</h2>
+    <p style="color:var(--muted);font-size:.77rem;margin-bottom:1.1rem;line-height:1.55">Qualquer pessoa pode enviar. Links aceitos: MediaFire, Google Drive, Dropbox, GitHub, MEGA, OneDrive, SourceForge, F-Droid e outros hosts verificados.</p>
+    <div id="upMsg" class="msg"></div>
+    <div class="field"><label>Nome do App *</label><input class="fi" type="text" id="upName" placeholder="Ex: VLC Media Player" maxlength="50"></div>
+    <div class="field"><label>Versão *</label><input class="fi" type="text" id="upVer" placeholder="Ex: 3.6.3" maxlength="20"></div>
+    <div class="field"><label>Categoria *</label>
+      <select class="fi" id="upCat"><option value="">Selecione…</option><option value="utilidades">🔧 Utilidades</option><option value="jogos">🎮 Jogos</option><option value="educacao">📚 Educação</option><option value="musica">🎵 Música</option><option value="produtividade">📋 Produtividade</option><option value="saude">❤️ Saúde</option><option value="social">💬 Social</option><option value="fotografia">📷 Fotografia</option></select>
+    </div>
+    <div class="field">
+      <label>Ícone</label>
+      <div class="icon-row" id="iconRow">
+        <span class="iopt">🎮</span><span class="iopt">🔧</span><span class="iopt">📚</span><span class="iopt">🎵</span><span class="iopt">📋</span><span class="iopt">❤️</span><span class="iopt">💬</span><span class="iopt">📷</span><span class="iopt">🎨</span><span class="iopt">🔐</span><span class="iopt">📦</span><span class="iopt">💻</span><span class="iopt">▶️</span><span class="iopt">🗺️</span><span class="iopt">🧠</span><span class="iopt">📝</span><span class="iopt">⏱️</span><span class="iopt">🎯</span><span class="iopt">🚀</span><span class="iopt">🛡️</span><span class="iopt">📊</span><span class="iopt">🎲</span><span class="iopt">🎬</span><span class="iopt">🔑</span><span class="iopt">💡</span>
+        <div style="display:flex;align-items:center;gap:.35rem;width:100%;margin-top:.18rem"><span style="font-size:.68rem;color:var(--muted)">Ou cole emoji:</span><input type="text" id="upIcoC" placeholder="😀" maxlength="4" style="width:52px;padding:.28rem .48rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:1.1rem;text-align:center;color:var(--text)" oninput="selCustomIco(this.value)"></div>
+      </div>
+      <input type="hidden" id="upIco" value="📦">
+    </div>
+    <div class="field">
+      <label>Imagem / Screenshot (URL)</label>
+      <input class="fi" type="url" id="upImg" placeholder="https://i.imgur.com/…jpg" oninput="prevImg('imgPrev',this.value)">
+      <div class="img-prev" id="imgPrev"><div class="ph">🖼️<br>Nenhuma imagem</div></div>
+      <div class="hint">Use Imgur (i.imgur.com), imgbb.com, Postimages ou qualquer link direto de imagem.</div>
+    </div>
+    <div class="field"><label>Descrição *</label><textarea class="fi" id="upDesc" placeholder="Descreva o app. Mínimo 20 caracteres…" style="height:68px;resize:none;"></textarea></div>
+    <div class="field"><label>Tamanho do APK</label><input class="fi" type="text" id="upSize" placeholder="Ex: 25.4 MB" maxlength="15"></div>
+    <div class="field"><label>Licença / Desenvolvedor</label><input class="fi" type="text" id="upLic" placeholder="Ex: GPL-3.0 · VideoLAN" maxlength="60"></div>
+    <div class="field">
+      <label>Link de Download *</label>
+      <input class="fi" type="url" id="upUrl" placeholder="https://www.mediafire.com/…" oninput="liveUrlChk(this.value)">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:.48rem .78rem;font-size:.7rem;font-family:'JetBrains Mono',monospace;word-break:break-all;color:var(--muted);margin-top:.32rem;min-height:30px" id="upUrlPrev">Cole o link para verificar.</div>
+      <div id="upUrlStat" style="font-size:.72rem;margin-top:.28rem;display:flex;align-items:center;gap:.32rem;"></div>
+    </div>
+    <div class="field"><label>Tags (vírgula)</label><input class="fi" type="text" id="upTags" placeholder="Ex: player, vídeo, offline" maxlength="100"></div>
+    <button class="btn blue" onclick="submitApp()" style="margin-top:.45rem">Enviar app ✈️</button>
+    <p style="font-size:.66rem;color:var(--muted);text-align:center;margin-top:.38rem">APKs com MOD/hack/crack são bloqueados automaticamente</p>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div class="ov" id="detailOv">
+  <div class="box" id="detailBox"></div>
+</div>
+
+<!-- REPORT -->
+<div class="ov" id="reportOv">
+  <div class="box" id="reportBox">
+    <button class="bx-x" onclick="closeReport()">✕</button>
+    <h3 style="font-size:1rem;font-weight:800;color:var(--danger);margin-bottom:.82rem">⚠ Denúncia</h3>
+    <select class="fi" id="rReason" style="margin-bottom:.65rem"><option value="">Motivo…</option><option value="copyright">Violação de direitos autorais</option><option value="malware">Malware / vírus</option><option value="mod">APK mod / pirata</option><option value="fake">App falso</option><option value="broken">Link quebrado</option><option value="adult">Conteúdo inapropriado</option><option value="other">Outro</option></select>
+    <textarea class="fi" id="rDesc" placeholder="Descreva (opcional)…" style="height:68px;resize:none;margin-bottom:.65rem;"></textarea>
+    <button class="btn red2" onclick="sendReport()">Enviar denúncia</button>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="ov" id="adminOv">
+  <div class="box" id="adminBox">
+    <button class="bx-x" onclick="closeAdmin()">✕</button>
+    <h2 style="font-size:1.18rem;font-weight:900;color:var(--danger);margin-bottom:.95rem">🛡️ Painel Admin</h2>
+    <div id="adminMsg" class="msg"></div>
+    <div id="adminLogin">
+      <div class="field"><label>Senha de Administrador</label><input class="fi" type="password" id="adminPw" placeholder="Digite a senha admin" onkeydown="if(event.key==='Enter')doAdminLogin()"></div>
+      <button class="btn red2" onclick="doAdminLogin()">Acessar painel</button>
+      <p style="font-size:.7rem;color:var(--muted);text-align:center;margin-top:.55rem">Senha padrão: <code style="color:var(--ac)">admin@vertice2025</code></p>
+    </div>
+    <div id="adminPanel" style="display:none">
+      <div class="adm-stat-row" id="admStats"></div>
+      <div class="adm-tabs">
+        <button class="adm-tab on" onclick="swAdmTab('pending',this)">⏳ Pendentes</button>
+        <button class="adm-tab" onclick="swAdmTab('official',this)">✅ Oficiais</button>
+        <button class="adm-tab" onclick="swAdmTab('community',this)">👥 Comunidade</button>
+        <button class="adm-tab" onclick="swAdmTab('reports',this)">🚨 Denúncias</button>
+        <button class="adm-tab" onclick="swAdmTab('addapp',this)">➕ Adicionar</button>
+      </div>
+      <div id="admPending" class="adm-sec on"></div>
+      <div id="admOfficial" class="adm-sec"></div>
+      <div id="admCommunity" class="adm-sec"></div>
+      <div id="admReports" class="adm-sec"></div>
+      <div id="admAddApp" class="adm-sec">
+        <h3 style="font-size:.92rem;font-weight:800;margin-bottom:.95rem;color:var(--ac)">Adicionar app oficial</h3>
+        <div class="field"><label>Nome *</label><input class="fi" type="text" id="aName" placeholder="Nome do app"></div>
+        <div class="field"><label>Versão *</label><input class="fi" type="text" id="aVer" placeholder="1.0.0"></div>
+        <div class="field"><label>Categoria *</label><select class="fi" id="aCat"><option value="utilidades">🔧 Utilidades</option><option value="jogos">🎮 Jogos</option><option value="educacao">📚 Educação</option><option value="musica">🎵 Música</option><option value="produtividade">📋 Produtividade</option><option value="saude">❤️ Saúde</option><option value="social">💬 Social</option><option value="fotografia">📷 Fotografia</option></select></div>
+        <div class="field"><label>Ícone (emoji)</label><input class="fi" type="text" id="aIco" placeholder="📦" maxlength="4"></div>
+        <div class="field"><label>Imagem (URL)</label><input class="fi" type="url" id="aImg" placeholder="https://…" oninput="prevImg('admImgPrev',this.value)"><div class="img-prev" id="admImgPrev" style="height:75px;margin-top:.35rem"><div class="ph">🖼️</div></div></div>
+        <div class="field"><label>Descrição *</label><textarea class="fi" id="aDesc" placeholder="Descrição completa…" style="height:65px;resize:none;"></textarea></div>
+        <div class="field"><label>Tamanho</label><input class="fi" type="text" id="aSize" placeholder="Ex: 30 MB"></div>
+        <div class="field"><label>Licença / Dev</label><input class="fi" type="text" id="aLic" placeholder="GPL-3.0 · Nome"></div>
+        <div class="field"><label>Link de Download *</label><input class="fi" type="url" id="aUrl" placeholder="https://…"></div>
+        <div class="field"><label>Tags (vírgula)</label><input class="fi" type="text" id="aTags" placeholder="player, vídeo"></div>
+        <div style="display:flex;gap:1.2rem;margin-bottom:.75rem">
+          <label style="display:flex;align-items:center;gap:.35rem;font-size:.84rem;cursor:pointer"><input type="checkbox" id="aFeat" style="width:15px;height:15px;accent-color:var(--ac)"> Destaque</label>
+          <label style="display:flex;align-items:center;gap:.35rem;font-size:.84rem;cursor:pointer"><input type="checkbox" id="aAppr" checked style="width:15px;height:15px;accent-color:var(--ac)"> Aprovado</label>
+        </div>
+        <button class="btn green" onclick="admAddOfficialApp()">Adicionar App Oficial ✅</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE -->
+<div class="ck-bar" id="ckBar">
+  <div class="ck-text">🍪 Cookies para sessão e anúncios Google AdSense. <a href="privacidade.html" target="_blank">Política de Privacidade</a>.</div>
+  <button class="ckb ck-ok" onclick="accCk()">Aceitar</button>
+  <button class="ckb ck-rej" onclick="rejCk()">Recusar</button>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-logo" onclick="resetView()">⬡ VÉRTICE<span>store</span></div>
+  <div class="nav-sw">
+    <span class="sw-ic">🔍</span>
+    <input type="text" id="searchIn" placeholder="Buscar apps, jogos…" oninput="liveSearch(this.value)" onblur="setTimeout(closeDrop,150)">
+    <div class="sdrop" id="sDrop"></div>
+  </div>
+  <div class="nav-right" id="navR">
+    <button class="btn-up" onclick="openUp()">📤 Enviar</button>
+    <button class="btn-ln" onclick="openAuth()">Entrar</button>
+  </div>
+</nav>
+
+<!-- CAT BAR -->
+<div class="cat-bar">
+  <div class="cc on" data-cat="todos" onclick="filtCat('todos',this)">🏠 Todos</div>
+  <div class="cc" data-cat="jogos" onclick="filtCat('jogos',this)">🎮 Jogos</div>
+  <div class="cc" data-cat="utilidades" onclick="filtCat('utilidades',this)">🔧 Utilidades</div>
+  <div class="cc" data-cat="educacao" onclick="filtCat('educacao',this)">📚 Educação</div>
+  <div class="cc" data-cat="musica" onclick="filtCat('musica',this)">🎵 Música</div>
+  <div class="cc" data-cat="produtividade" onclick="filtCat('produtividade',this)">📋 Produtividade</div>
+  <div class="cc" data-cat="saude" onclick="filtCat('saude',this)">❤️ Saúde</div>
+  <div class="cc" data-cat="social" onclick="filtCat('social',this)">💬 Social</div>
+  <div class="cc" data-cat="fotografia" onclick="filtCat('fotografia',this)">📷 Fotografia</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Apps <em>originais</em>,<br>seguros e gratuitos.</h1>
+  <p>Links verificados em 10 camadas, detecção automática de MOD e painel de administração completo.</p>
+  <div class="hero-badges">
+    <div class="badge">✅ Livre de direitos autorais</div>
+    <div class="badge">🔒 10 verificações de segurança</div>
+    <div class="badge">📤 Comunidade envia</div>
+    <div class="badge">🛡️ Painel admin</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="ad-lbl">Publicidade</div>
+  <div class="ad-wrap"><ins class="adsbygoogle" style="display:block;width:100%;height:90px;" data-ad-client="ca-app-pub-4950043631682039" data-ad-slot="7952954975" data-ad-format="banner" data-full-width-responsive="true"></ins></div>
+  <div id="secFeat"><div class="sh"><div class="st">🔥 Destaques</div></div><div class="fg" id="gridFeat"></div></div>
+  <div id="secTop"><div class="sh"><div class="st">⭐ Melhor avaliados</div></div><div class="hl-grid" id="gridTop"></div></div>
+  <div id="secComm" style="display:none"><div class="sh"><div class="st">👥 Enviados pela comunidade</div></div><div class="app-list" id="listComm"></div></div>
+  <div id="secList"><div class="sh"><div class="st" id="listTitle">📱 Todos os Apps</div></div><div class="app-list" id="appList"></div><div class="empty" id="noRes" style="display:none"><div>😕</div><p>Nenhum app encontrado.</p></div></div>
+</div>
+
+<div class="tw" id="tw"></div>
+
+<footer>
+  <div class="fg-grid">
+    <div class="fc-col"><h4>⬡ VÉRTICE</h4><a href="privacidade.html">Política de Privacidade</a><a onclick="toast('Em breve!','info')">Termos de Uso</a><a onclick="openAdmin()">🛡️ Admin</a></div>
+    <div class="fc-col"><h4>Categorias</h4><a onclick="filtCat('jogos',null)">Jogos</a><a onclick="filtCat('utilidades',null)">Utilidades</a><a onclick="filtCat('musica',null)">Música</a></div>
+    <div class="fc-col"><h4>Comunidade</h4><a onclick="openAuth()">Criar conta</a><a onclick="openUp()">📤 Enviar APK</a><a href="mailto:rafaelvieira123jr@gmail.com">Contato</a></div>
+  </div>
+  <div class="ft-bot">© 2025 <em>Vértice Store</em> — Apps originais e livres de direitos autorais. Não hospedamos software pirata.</div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+// VÉRTICE STORE v4
+// CORREÇÃO PRINCIPAL: SHA-256 puro em JS (funciona
+// em file://, HTTP e HTTPS - sem crypto.subtle)
+// ═══════════════════════════════════════════════════
+
+/* ─── PURE JS SHA-256 (sem Web Crypto API) ─── */
+function sha256(msg) {
+  function rightRotate(v,a){return (v>>>a)|(v<<(32-a));}
+  var mathPow=Math.pow,maxWord=mathPow(2,32);
+  var i,j,k,l,result='',words=[],asciiBitLength=msg.length*8;
+  var hash=[],exponent=2,primeCounter=0;
+  while(primeCounter<64){
+    var isPrime=true;
+    for(i=2;i<=exponent/2;i++){if(exponent%i===0){isPrime=false;break;}}
+    if(isPrime){
+      if(primeCounter<8){hash[primeCounter]=Math.floor(mathPow(exponent,.5)*maxWord)&0xffffffff;}
+      words[primeCounter]=Math.floor(mathPow(exponent,1/3)*maxWord)&0xffffffff;
+      primeCounter++;
+    }
+    exponent++;
+  }
+  msg+='\x80';
+  while(msg.length%64-56){msg+='\x00';}
+  for(i=0;i<msg.length;i++){
+    j=msg.charCodeAt(i);
+    if(j>>8){return null;}
+    for(k=24;k>=0;k-=8){words.push?null:0;l=words.push?words.length-1:l;
+      if(l===undefined)break;}
+  }
+  // simplified: use TextEncoder approach for unicode
+  var buf=[];
+  for(var ci=0;ci<msg.length;ci++){buf.push(msg.charCodeAt(ci)&0xff);}
+  // pad
+  buf.push(0x80);
+  while(buf.length%64!==56){buf.push(0);}
+  var bl=asciiBitLength;
+  for(var bi=7;bi>=0;bi--){buf.push((bl/mathPow(2,bi*8))&0xff);}
+  var H=hash.slice(0,8);
+  var W=new Array(64);
+  for(var bi2=0;bi2<buf.length;bi2+=64){
+    for(var wi=0;wi<16;wi++){W[wi]=(buf[bi2+wi*4]<<24)|(buf[bi2+wi*4+1]<<16)|(buf[bi2+wi*4+2]<<8)|buf[bi2+wi*4+3];}
+    for(var wi=16;wi<64;wi++){var s0=rightRotate(W[wi-15],7)^rightRotate(W[wi-15],18)^(W[wi-15]>>>3);var s1=rightRotate(W[wi-2],17)^rightRotate(W[wi-2],19)^(W[wi-2]>>>10);W[wi]=(W[wi-16]+s0+W[wi-7]+s1)&0xffffffff;}
+    var a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];
+    for(var ri=0;ri<64;ri++){var S1=rightRotate(e,6)^rightRotate(e,11)^rightRotate(e,25);var ch=(e&f)^((~e)&g);var temp1=(h+S1+ch+words[ri]+W[ri])&0xffffffff;var S0=rightRotate(a,2)^rightRotate(a,13)^rightRotate(a,22);var maj=(a&b)^(a&c)^(b&c);var temp2=(S0+maj)&0xffffffff;h=g;g=f;f=e;e=(d+temp1)&0xffffffff;d=c;c=b;b=a;a=(temp1+temp2)&0xffffffff;}
+    H[0]=(H[0]+a)&0xffffffff;H[1]=(H[1]+b)&0xffffffff;H[2]=(H[2]+c)&0xffffffff;H[3]=(H[3]+d)&0xffffffff;
+    H[4]=(H[4]+e)&0xffffffff;H[5]=(H[5]+f)&0xffffffff;H[6]=(H[6]+g)&0xffffffff;H[7]=(H[7]+h)&0xffffffff;
+  }
+  for(var hi=0;hi<8;hi++){for(var hj=3;hj>=0;hj--){result+=('0'+(( H[hi]>>(hj*8))&0xff).toString(16)).slice(-2);}}
+  return result;
+}
+function hashPw(pw){return sha256('vs_salt_2025#!'+pw+'!#vs');}
+function hashAdm(pw){return sha256('adm_salt_!vertice!_'+pw+'_adm');}
+
+/* ─── ADMIN PASSWORD ─── */
+var ADMIN_PW_HASH = hashAdm('admin@vertice2025');
+
+/* ─── APPS OFICIAIS ─── */
+var OFFICIAL = [
+  {id:'vlc',name:'VLC Media Player',icon:'🔴',img:'',cat:'utilidades',featured:true,approved:true,official:true,desc:'O player de mídia mais completo do mundo. Reproduz qualquer formato de vídeo e áudio sem codecs extras. Licença LGPL-2.1.',version:'3.6.3',size:'30.2 MB',downloads:9800000,rating:4.8,tags:['vídeo','áudio','player','codec','offline'],licenca:'LGPL-2.1',dev:'VideoLAN',url:'https://github.com/videolan/vlc-android/releases/latest'},
+  {id:'firefox',name:'Firefox Browser',icon:'🦊',img:'',cat:'utilidades',featured:true,approved:true,official:true,desc:'Navegador rápido e privado da Mozilla. Suporta extensões e proteção total contra rastreadores. MPL-2.0.',version:'134.0',size:'82.1 MB',downloads:8500000,rating:4.7,tags:['navegador','browser','privacidade','internet'],licenca:'MPL-2.0',dev:'Mozilla Foundation',url:'https://download.mozilla.org/?product=fennec-latest&os=android&lang=pt-BR'},
+  {id:'ankidroid',name:'AnkiDroid Flashcards',icon:'🧠',img:'',cat:'educacao',featured:true,approved:true,official:true,desc:'Aprenda qualquer coisa com flashcards e repetição espaçada. Sincroniza com AnkiWeb. GPL-3.',version:'2.17.6',size:'16.8 MB',downloads:4200000,rating:4.8,tags:['estudo','flashcard','memória','idiomas'],licenca:'GPL-3.0',dev:'AnkiDroid Team',url:'https://github.com/ankidroid/Anki-Android/releases/latest/download/AnkiDroid-universal.apk'},
+  {id:'opencamera',name:'Open Camera',icon:'📷',img:'',cat:'fotografia',featured:false,approved:true,official:true,desc:'Câmera avançada com HDR, modo noturno e RAW. Sem anúncios. GPL-3.',version:'1.53.2',size:'5.7 MB',downloads:1800000,rating:4.5,tags:['câmera','foto','hdr','raw'],licenca:'GPL-3.0',dev:'Mark Harman',url:'https://sourceforge.net/projects/opencamera/files/latest/download'},
+  {id:'osmand',name:'OsmAnd – Mapas Offline',icon:'🗺️',img:'',cat:'utilidades',featured:false,approved:true,official:true,desc:'Mapas offline completos com navegação turn-by-turn. Baseado no OpenStreetMap. GPL-3.',version:'4.8.3',size:'78.4 MB',downloads:3100000,rating:4.6,tags:['mapa','gps','offline','navegação'],licenca:'GPL-3.0',dev:'OsmAnd BV',url:'https://github.com/osmandapp/OsmAnd/releases/latest'},
+  {id:'termux',name:'Termux',icon:'💻',img:'',cat:'utilidades',featured:false,approved:true,official:true,desc:'Terminal Linux completo no Android. Python, Node.js, Git, SSH. Recomendado instalar pelo F-Droid. GPL-3.',version:'0.118.1',size:'8.1 MB',downloads:2900000,rating:4.7,tags:['terminal','linux','python','ssh'],licenca:'GPL-3.0',dev:'Termux',url:'https://f-droid.org/packages/com.termux/'},
+  {id:'newpipe',name:'NewPipe',icon:'▶️',img:'',cat:'musica',featured:true,approved:true,official:true,desc:'YouTube sem anúncios, sem conta Google. Baixe vídeos e áudios. GPL-3.',version:'0.27.3',size:'14.2 MB',downloads:3600000,rating:4.9,tags:['youtube','vídeo','música','sem anúncios'],licenca:'GPL-3.0',dev:'TeamNewPipe',url:'https://github.com/TeamNewPipe/NewPipe/releases/latest/download/NewPipe_v0.27.3.apk'},
+  {id:'signal',name:'Signal',icon:'🔐',img:'',cat:'social',featured:false,approved:true,official:true,desc:'Mensagens e chamadas criptografadas. O app mais seguro. AGPL-3.',version:'7.14.4',size:'44.6 MB',downloads:5200000,rating:4.8,tags:['mensagem','privacidade','criptografia'],licenca:'AGPL-3.0',dev:'Signal Foundation',url:'https://signal.org/android/apk/'},
+  {id:'fdroid',name:'F-Droid',icon:'📦',img:'',cat:'utilidades',featured:true,approved:true,official:true,desc:'Loja de apps open source. Todos verificados e livres de rastreadores. GPL-3.',version:'1.21.1',size:'13.5 MB',downloads:6700000,rating:4.9,tags:['loja','open source','apps','foss'],licenca:'GPL-3.0',dev:'F-Droid Limited',url:'https://f-droid.org/F-Droid.apk'},
+  {id:'libreoffice',name:'LibreOffice Viewer',icon:'📄',img:'',cat:'produtividade',featured:false,approved:true,official:true,desc:'Visualize e edite Word, Excel e PowerPoint. MPL-2.0.',version:'7.6.7',size:'98.3 MB',downloads:1400000,rating:4.3,tags:['office','word','excel','documentos'],licenca:'MPL-2.0',dev:'The Document Foundation',url:'https://www.libreoffice.org/download/android-viewer/'},
+  {id:'kotatsu',name:'Kotatsu – Mangá',icon:'📖',img:'',cat:'educacao',featured:false,approved:true,official:true,desc:'Leitor de mangás e quadrinhos. Offline, sem anúncios. GPL-3.',version:'6.8',size:'10.4 MB',downloads:870000,rating:4.7,tags:['mangá','quadrinhos','leitura','offline'],licenca:'GPL-3.0',dev:'Kotatsu Team',url:'https://github.com/KotatsuApp/Kotatsu/releases/latest/download/kotatsu.apk'},
+  {id:'musicolet',name:'Musicolet Player',icon:'🎵',img:'',cat:'musica',featured:false,approved:true,official:true,desc:'Player de música local com equalizador de 10 bandas. Sem anúncios. Freeware.',version:'8.0',size:'11.3 MB',downloads:2100000,rating:4.8,tags:['música','player','mp3','equalizador'],licenca:'Freeware',dev:'Krosbits',url:'https://krosbits.in/musicolet/'},
+];
+
+/* ─── MOD DETECTION ─── */
+var MOD_RE = /\b(mod|modded|hack|hacked|crack|cracked|cheat|unlimited|unlocked|premium free|apkmod|hackear|aimbot|wallhack|god.?mode|trainer)\b/i;
+function isMod(a){return MOD_RE.test(a.name)||MOD_RE.test(a.desc)||(a.tags||[]).some(function(t){return MOD_RE.test(t);});}
+
+/* ─── URL VERIFICATION (10 layers) ─── */
+var TRUSTED = {'mediafire.com':{n:'MediaFire',i:'☁️',t:5},'drive.google.com':{n:'Google Drive',i:'📂',t:5},'docs.google.com':{n:'Google Docs',i:'📂',t:5},'github.com':{n:'GitHub',i:'🐙',t:5},'objects.githubusercontent.com':{n:'GitHub CDN',i:'🐙',t:5},'raw.githubusercontent.com':{n:'GitHub Raw',i:'🐙',t:5},'sourceforge.net':{n:'SourceForge',i:'🔨',t:4},'dl.sourceforge.net':{n:'SourceForge CDN',i:'🔨',t:5},'dropbox.com':{n:'Dropbox',i:'📦',t:5},'dl.dropboxusercontent.com':{n:'Dropbox CDN',i:'📦',t:5},'mega.nz':{n:'MEGA',i:'🔺',t:4},'onedrive.live.com':{n:'OneDrive',i:'🔵',t:5},'1drv.ms':{n:'OneDrive',i:'🔵',t:5},'f-droid.org':{n:'F-Droid',i:'📦',t:5},'apkmirror.com':{n:'APKMirror',i:'🪞',t:4},'archive.org':{n:'Archive.org',i:'🏛️',t:4},'fosshub.com':{n:'FossHub',i:'🧩',t:5},'signal.org':{n:'Signal.org',i:'🔐',t:5},'mozilla.org':{n:'Mozilla',i:'🦊',t:5},'krosbits.in':{n:'Krosbits',i:'🎵',t:4},'libreoffice.org':{n:'LibreOffice',i:'📄',t:5},'osmand.net':{n:'OsmAnd',i:'🗺️',t:5},'download.mozilla.org':{n:'Mozilla Download',i:'🦊',t:5}};
+var SHORT_RE = /\b(bit\.ly|tinyurl\.com|ow\.ly|t\.co|goo\.gl|shorturl\.at|cutt\.ly|adf\.ly|linkvertise|ouo\.io|bc\.vc)\b/i;
+var BAD_EXT = /\.(exe|bat|cmd|msi|ps1|vbs|dmg|pkg|deb|rpm)(\?|$)/i;
+var BAD_PATH = /(password|hack|crack|keygen|serial|patch|loader|bypass)/i;
+
+function verifyUrl(raw){
+  var R={url:raw,blocked:false,level:'danger',hi:null,score:0,checks:[],host:'',icon:'❓',hname:'Desconhecido'};
+  if(!raw||raw===''||/^(#|\s*$)/.test(raw)){R.checks.push({l:'Link fornecido',p:false,m:'Não configurado'});R.blocked=true;return R;}
+  if(SHORT_RE.test(raw)){R.checks.push({l:'Sem encurtadores',p:false,m:'URL encurtada bloqueada'});R.blocked=true;return R;}
+  R.checks.push({l:'Sem encurtadores',p:true,m:'OK'});
+  var hs=/^https:\/\//i.test(raw);
+  R.checks.push({l:'HTTPS',p:hs,m:hs?'OK':'HTTP não seguro'});
+  var p;try{p=new URL(raw);}catch(e){R.checks.push({l:'URL válida',p:false,m:'Formato inválido'});R.blocked=true;return R;}
+  R.checks.push({l:'URL válida',p:true,m:'OK'});
+  var h=p.hostname.replace(/^www\./,'').toLowerCase();R.host=h;
+  var hi=TRUSTED[h]||null;
+  if(!hi){var kk=Object.keys(TRUSTED);for(var ki=0;ki<kk.length;ki++){var kn=kk[ki].replace(/^www\./,'');if(h===kn||h.endsWith('.'+kn)){hi=TRUSTED[kk[ki]];break;}}}
+  R.hi=hi;R.icon=hi?hi.i:'❓';R.hname=hi?hi.n:h;
+  R.checks.push({l:'Host confiável',p:!!hi,m:hi?hi.n+' ('+hi.t+'/5)':'Desconhecido: '+h});
+  var be=BAD_EXT.test(raw);R.checks.push({l:'Sem extensão perigosa',p:!be,m:be?'Extensão bloqueada':'OK'});
+  var bp=BAD_PATH.test(p.pathname);R.checks.push({l:'Sem termos suspeitos',p:!bp,m:bp?'Caminho suspeito':'OK'});
+  var ip=/^\d{1,3}(\.\d{1,3}){3}$/.test(h);R.checks.push({l:'Domínio real',p:!ip,m:ip?'IP direto suspeito':'OK'});
+  var pu=h.indexOf('xn--')!==-1;R.checks.push({l:'Sem homoglyph',p:!pu,m:pu?'Domínio falso':'OK'});
+  var lo=raw.length>900;R.checks.push({l:'URL não suspeita',p:!lo,m:lo?'URL muito longa':'OK'});
+  var dl=/\.(apk|zip|rar|tar|gz|7z)(\?|$)/i.test(raw)||/download|releases\/download|\/file\/|export=download|\/packages\//i.test(raw)||/f-droid\.org|signal\.org|krosbits\.in|libreoffice\.org/i.test(raw);
+  R.checks.push({l:'Parece link de download',p:dl,m:dl?'OK':'Pode não ser download direto'});
+  var ok=R.checks.filter(function(c){return c.p;}).length;
+  R.score=Math.round(ok/R.checks.length*100);
+  if(!hs||ip||pu||be||bp){R.level='danger';R.blocked=true;}
+  else if(!hi||R.score<65){R.level='warn';}
+  else{R.level='safe';}
+  return R;
+}
+
+function uvBadge(v){
+  if(v.blocked&&(!v.url||/^(#|\s*$)/.test(v.url))){return '<div class="uv danger"><div class="uv-ico">⚙️</div><div><strong>Link não configurado</strong><div style="font-size:.69rem;margin-top:.18rem;opacity:.8">O admin ainda não adicionou o link de download.</div></div></div>';}
+  var ic={safe:'🛡️',warn:'⚠️',danger:'🚫'};
+  var ti={safe:'Link verificado ('+v.score+'%)',warn:'Ressalvas ('+v.score+'%)',danger:'Link bloqueado'};
+  var ch=v.checks.map(function(c){return '<div class="vck '+(c.p?'p':'f')+'">'+(c.p?'✓':'✗')+' '+esc(c.l)+(c.m&&c.m!=='OK'?' — '+esc(c.m):'')+'</div>';}).join('');
+  return '<div class="uv '+v.level+'"><div class="uv-ico">'+ic[v.level]+'</div><div style="flex:1"><strong>'+ti[v.level]+'</strong><div style="font-size:.69rem;margin-top:.18rem;opacity:.8">'+v.icon+' '+esc(v.hname)+' · '+esc(v.host)+'</div><details style="margin-top:.28rem"><summary style="cursor:pointer;font-size:.66rem;color:var(--muted)">'+v.checks.length+' verificações</summary><div class="vchecks">'+ch+'</div></details></div></div>';
+}
+
+/* ─── STORAGE ─── */
+function gU(){try{return JSON.parse(localStorage.getItem('vs_u')||'{}')}catch(e){return {}}}
+function sU(u){localStorage.setItem('vs_u',JSON.stringify(u))}
+function gRv(){try{return JSON.parse(localStorage.getItem('vs_rv')||'{}')}catch(e){return {}}}
+function sRv(r){localStorage.setItem('vs_rv',JSON.stringify(r))}
+function gRp(){try{return JSON.parse(localStorage.getItem('vs_rp')||'[]')}catch(e){return []}}
+function sRp(r){localStorage.setItem('vs_rp',JSON.stringify(r))}
+function gCA(){try{return JSON.parse(localStorage.getItem('vs_ca')||'[]')}catch(e){return []}}
+function sCA(a){localStorage.setItem('vs_ca',JSON.stringify(a))}
+function gExtraOff(){try{return JSON.parse(localStorage.getItem('vs_eo')||'[]')}catch(e){return []}}
+function sExtraOff(a){localStorage.setItem('vs_eo',JSON.stringify(a))}
+function getAllOff(){return OFFICIAL.concat(gExtraOff());}
+
+/* ─── COOKIES ─── */
+function setCk(n,v,d){var e=new Date();e.setTime(e.getTime()+(d||7)*864e5);document.cookie=n+'='+encodeURIComponent(v)+';expires='+e.toUTCString()+';path=/;SameSite=Strict';}
+function getCk(n){var c=document.cookie.split(';').find(function(c){return c.trim().startsWith(n+'=');});return c?decodeURIComponent(c.split('=')[1].trim()):null;}
+function delCk(n){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';}
+
+/* ─── SESSION ─── */
+var CU=null,isAdm=false;
+function initSess(){
+  var s=getCk('vs_s');
+  if(s){var u=gU();if(u[s]){CU={username:s,pwHash:u[s].pwHash,createdAt:u[s].createdAt};}}
+  updateNav();
+}
+function updateNav(){
+  var nr=document.getElementById('navR');
+  var up='<button class="btn-up" onclick="openUp()">📤 Enviar</button>';
+  if(CU){
+    var ini=CU.username.slice(0,2).toUpperCase();
+    nr.innerHTML=up+'<div class="uchip" onclick="togUM(event)"><div class="av">'+ini+'</div><span>'+esc(CU.username)+'</span>▾'
+      +'<div class="um" id="umenu">'
+      +'<div class="umi">👤 '+esc(CU.username)+'</div>'
+      +(isAdm?'<div class="umi" onclick="openAdmin()">🛡️ Painel Admin</div>':'')
+      +'<div class="umi" onclick="delAcc()">🗑 Excluir conta</div>'
+      +'<div class="umi red" onclick="logout()">⎋ Sair</div>'
+      +'</div></div>';
+  }else{
+    nr.innerHTML=up+'<button class="btn-ln" onclick="openAuth()">Entrar</button>';
+  }
+}
+function togUM(e){e.stopPropagation();var m=document.getElementById('umenu');if(m)m.classList.toggle('on');}
+document.addEventListener('click',function(){var m=document.getElementById('umenu');if(m)m.classList.remove('on');});
+
+/* ─── AUTH ─── */
+function openAuth(){ov('authOv',true);}
+function closeAuth(){ov('authOv',false);clrM('authMsg');}
+document.getElementById('authOv').onclick=function(e){if(e.target===this)closeAuth();};
+function showM(id,txt,tp){var el=document.getElementById(id);if(!el)return;el.textContent=txt;el.className='msg '+tp+' on';}
+function clrM(id){var el=document.getElementById(id);if(el)el.className='msg';}
+function swTab(t){
+  clrM('authMsg');
+  document.getElementById('fL').style.display=t==='l'?'block':'none';
+  document.getElementById('fR').style.display=t==='r'?'block':'none';
+  document.getElementById('tL').className='tab'+(t==='l'?' on':'');
+  document.getElementById('tR').className='tab'+(t==='r'?' on':'');
+}
+function chkStr(pw){
+  var bar=document.getElementById('pwBar'),hint=document.getElementById('pwHint');
+  var s=0;if(pw.length>=8)s++;if(pw.length>=12)s++;if(/[A-Z]/.test(pw))s++;if(/[0-9]/.test(pw))s++;if(/[^a-zA-Z0-9]/.test(pw))s++;
+  var c=['#ff4560','#ff6b35','#ffc947','#00aaff','#00e5a0'],l=['Muito fraca','Fraca','Razoável','Boa','Forte'];
+  bar.style.width=(s/5*100)+'%';bar.style.background=c[Math.max(0,s-1)];
+  hint.textContent=pw.length?l[Math.max(0,s-1)]:'Use letras, números e símbolos.';
+}
+function doLogin(){
+  clrM('authMsg');
+  var u=document.getElementById('lU').value.trim(),p=document.getElementById('lP').value;
+  if(!u||!p){showM('authMsg','Preencha todos os campos.','err');return;}
+  var users=gU();if(!users[u]){showM('authMsg','Usuário não encontrado.','err');return;}
+  if(users[u].pwHash!==hashPw(p)){showM('authMsg','Senha incorreta.','err');return;}
+  CU={username:u,pwHash:users[u].pwHash,createdAt:users[u].createdAt};
+  setCk('vs_s',u,7);updateNav();closeAuth();toast('✅ Bem-vindo, '+u+'!','success');
+}
+function doReg(){
+  clrM('authMsg');
+  var u=document.getElementById('rU').value.trim(),p=document.getElementById('rP').value,p2=document.getElementById('rP2').value;
+  if(!u||!p||!p2){showM('authMsg','Preencha todos os campos.','err');return;}
+  if(u.length<3){showM('authMsg','Usuário muito curto.','err');return;}
+  if(p.length<8){showM('authMsg','Senha mínima: 8 caracteres.','err');return;}
+  if(p!==p2){showM('authMsg','Senhas não coincidem.','err');return;}
+  var users=gU();if(users[u]){showM('authMsg','Nome já em uso.','err');return;}
+  users[u]={pwHash:hashPw(p),createdAt:Date.now()};sU(users);
+  showM('authMsg','✅ Conta criada! Entrando…','ok');
+  setTimeout(function(){CU={username:u,pwHash:users[u].pwHash,createdAt:users[u].createdAt};setCk('vs_s',u,7);updateNav();closeAuth();toast('🎉 Bem-vindo, '+u+'!','success');},1200);
+}
+function logout(){delCk('vs_s');CU=null;isAdm=false;updateNav();toast('Sessão encerrada.','info');}
+function delAcc(){
+  if(!confirm('Excluir conta? Não pode ser desfeito.'))return;
+  var u=gU();delete u[CU.username];sU(u);logout();toast('Conta excluída.','info');
+}
+
+/* ─── ADMIN ─── */
+function openAdmin(){ov('adminOv',true);}
+function closeAdmin(){ov('adminOv',false);clrM('adminMsg');}
+document.getElementById('adminOv').onclick=function(e){if(e.target===this)closeAdmin();};
+function doAdminLogin(){
+  var pw=document.getElementById('adminPw').value;
+  if(!pw){showM('adminMsg','Digite a senha.','err');return;}
+  if(hashAdm(pw)!==ADMIN_PW_HASH){showM('adminMsg','Senha incorreta.','err');document.getElementById('adminPw').value='';return;}
+  isAdm=true;
+  document.getElementById('adminLogin').style.display='none';
+  document.getElementById('adminPanel').style.display='block';
+  clrM('adminMsg');updateNav();renderAdmStats();swAdmTab('pending',null);
+  toast('🛡️ Painel admin acessado.','success');
+}
+function swAdmTab(t,el){
+  document.querySelectorAll('.adm-tab').forEach(function(x){x.classList.remove('on');});
+  if(el)el.classList.add('on');
+  document.querySelectorAll('.adm-sec').forEach(function(x){x.classList.remove('on');});
+  var m={pending:'admPending',official:'admOfficial',community:'admCommunity',reports:'admReports',addapp:'admAddApp'};
+  var sec=document.getElementById(m[t]);if(sec)sec.classList.add('on');
+  if(t==='pending')rdAdmPending();
+  else if(t==='official')rdAdmOfficial();
+  else if(t==='community')rdAdmComm();
+  else if(t==='reports')rdAdmReports();
+}
+function renderAdmStats(){
+  var ca=gCA(),rp=gRp(),off=getAllOff();
+  var pend=ca.filter(function(a){return !a.approved;});
+  document.getElementById('admStats').innerHTML=
+    '<div class="adm-stat"><div class="n">'+off.length+'</div><div class="l">Oficiais</div></div>'
+    +'<div class="adm-stat"><div class="n">'+ca.length+'</div><div class="l">Comunidade</div></div>'
+    +'<div class="adm-stat"><div class="n">'+pend.length+'</div><div class="l">Pendentes</div></div>'
+    +'<div class="adm-stat"><div class="n">'+rp.length+'</div><div class="l">Denúncias</div></div>';
+}
+function mkAdmCard(a,src){
+  var v=verifyUrl(a.url);
+  var modF=isMod(a)?'<span class="mod-badge">⚠ MOD</span>':'';
+  var commF=!a.official?'<span class="comm-badge">👥</span>':'';
+  var appF=a.approved?'<span style="color:var(--ac);font-size:.68rem">✅</span>':'<span style="color:var(--warn);font-size:.68rem">⏳</span>';
+  var ico=a.img?'<img src="'+esc(a.img)+'" onerror="this.style.display=\'none\'">':a.icon;
+  return '<div class="adm-card"><div class="adm-card-hdr">'
+    +'<div class="adm-ico">'+ico+'</div>'
+    +'<div class="adm-info">'
+    +'<div class="adm-name">'+esc(a.name)+modF+commF+' '+appF+'</div>'
+    +'<div class="adm-meta">v'+esc(a.version)+' · '+esc(catLbl(a.cat))+'</div>'
+    +'<div class="adm-meta" style="font-size:.66rem;word-break:break-all;margin-top:.12rem">🔗 '+esc(a.url||'Sem link')+'</div>'
+    +'<div class="adm-meta" style="color:'+(v.level==='safe'?'var(--ac)':v.level==='warn'?'var(--warn)':'var(--danger)')+';font-size:.68rem">'+v.icon+' '+esc(v.hname)+' — Score: '+v.score+'%</div>'
+    +'<div class="adm-acts">'
+    +(!a.approved?'<button class="ab app" onclick="admApprove(\''+a.id+'\',\''+src+'\')">✅ Aprovar</button>':'')
+    +'<button class="ab edt" onclick="admEdit(\''+a.id+'\',\''+src+'\')">✏️ Editar</button>'
+    +'<button class="ab feat" onclick="admFeat(\''+a.id+'\',\''+src+'\')">⭐ '+(a.featured?'−Destaque':'+Destaque')+'</button>'
+    +'<button class="ab del" onclick="admDel(\''+a.id+'\',\''+src+'\')">🗑 Remover</button>'
+    +'</div>'
+    +'<div id="ed_'+a.id+'" style="display:none;margin-top:.45rem">'
+    +'<input class="edit-in" type="url" id="ei_url_'+a.id+'" placeholder="Link de download" value="'+esc(a.url||'')+'">'
+    +'<input class="edit-in" type="text" id="ei_img_'+a.id+'" placeholder="URL da imagem" value="'+esc(a.img||'')+'">'
+    +'<input class="edit-in" type="text" id="ei_name_'+a.id+'" placeholder="Nome" value="'+esc(a.name)+'">'
+    +'<button class="ab app" onclick="admSave(\''+a.id+'\',\''+src+'\')">💾 Salvar</button>'
+    +'</div>'
+    +'</div></div></div>';
+}
+function admEdit(id,src){var el=document.getElementById('ed_'+id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+function admSave(id,src){
+  var url=(document.getElementById('ei_url_'+id)||{}).value||'';
+  var img=(document.getElementById('ei_img_'+id)||{}).value||'';
+  var nm=(document.getElementById('ei_name_'+id)||{}).value||'';
+  if(src==='official'){
+    var o=OFFICIAL.find(function(a){return a.id===id;});
+    if(o){if(url)o.url=url;if(img)o.img=img;if(nm)o.name=nm;}
+    var ex=gExtraOff();var xi=ex.findIndex(function(a){return a.id===id;});
+    if(xi>-1){if(url)ex[xi].url=url;if(img)ex[xi].img=img;if(nm)ex[xi].name=nm;sExtraOff(ex);}
+  }else{
+    var ca=gCA();var ci=ca.findIndex(function(a){return a.id===id;});
+    if(ci>-1){if(url)ca[ci].url=url;if(img)ca[ci].img=img;if(nm)ca[ci].name=nm;sCA(ca);}
+  }
+  toast('💾 Salvo!','success');renderAll();swAdmTab(src==='official'?'official':'community',null);
+}
+function admApprove(id,src){
+  if(src==='community'){var ca=gCA();var i=ca.findIndex(function(a){return a.id===id;});if(i>-1){ca[i].approved=true;sCA(ca);}}
+  toast('✅ Aprovado!','success');renderAll();swAdmTab('pending',null);renderAdmStats();
+}
+function admFeat(id,src){
+  if(src==='official'){var o=getAllOff().find(function(a){return a.id===id;});if(o){o.featured=!o.featured;var ex=gExtraOff();var xi=ex.findIndex(function(a){return a.id===id;});if(xi>-1){ex[xi].featured=!ex[xi].featured;sExtraOff(ex);}}}
+  else{var ca=gCA();var i=ca.findIndex(function(a){return a.id===id;});if(i>-1){ca[i].featured=!ca[i].featured;sCA(ca);}}
+  toast('⭐ Atualizado!','success');renderAll();swAdmTab(src==='official'?'official':'community',null);
+}
+function admDel(id,src){
+  if(!confirm('Remover definitivamente?'))return;
+  if(src==='community'){var ca=gCA();sCA(ca.filter(function(a){return a.id!==id;}));}
+  else{var o=OFFICIAL.find(function(a){return a.id===id;});if(o)o.approved=false;var ex=gExtraOff();sExtraOff(ex.filter(function(a){return a.id!==id;}));}
+  toast('🗑 Removido.','info');renderAll();swAdmTab(src,null);renderAdmStats();
+}
+function rdAdmPending(){
+  var el=document.getElementById('admPending');
+  var apps=gCA().filter(function(a){return !a.approved;});
+  el.innerHTML=apps.length?apps.map(function(a){return mkAdmCard(a,'community');}).join(''):'<p style="color:var(--muted);font-size:.83rem;padding:.8rem">Nenhum app pendente. ✅</p>';
+}
+function rdAdmOfficial(){
+  document.getElementById('admOfficial').innerHTML=getAllOff().map(function(a){return mkAdmCard(a,'official');}).join('');
+}
+function rdAdmComm(){
+  var apps=gCA().filter(function(a){return a.approved;});
+  document.getElementById('admCommunity').innerHTML=apps.length?apps.map(function(a){return mkAdmCard(a,'community');}).join(''):'<p style="color:var(--muted);font-size:.83rem;padding:.8rem">Nenhum app aprovado da comunidade.</p>';
+}
+function rdAdmReports(){
+  var rps=gRp();
+  if(!rps.length){document.getElementById('admReports').innerHTML='<p style="color:var(--muted);font-size:.83rem;padding:.8rem">Nenhuma denúncia.</p>';return;}
+  var all=getAllOff().concat(gCA());
+  document.getElementById('admReports').innerHTML=rps.slice().reverse().map(function(r){
+    var a=all.find(function(x){return x.id===r.appId;});
+    return '<div style="background:var(--bg2);border:1px solid rgba(255,69,96,.18);border-radius:8px;padding:.7rem;margin-bottom:.45rem"><div style="font-weight:700;font-size:.8rem;margin-bottom:.18rem">App: '+(a?esc(a.name):r.appId)+'</div><div style="font-size:.72rem;color:var(--muted)">Motivo: '+esc(r.reason)+' · Por: '+esc(r.user)+' · '+new Date(r.ts).toLocaleDateString('pt-BR')+'</div>'+(r.desc?'<div style="font-size:.72rem;color:var(--light);margin-top:.18rem">'+esc(r.desc)+'</div>':'')+'</div>';
+  }).join('');
+}
+function admAddOfficialApp(){
+  var name=document.getElementById('aName').value.trim(),ver=document.getElementById('aVer').value.trim(),cat=document.getElementById('aCat').value,ico=document.getElementById('aIco').value.trim()||'📦',img=document.getElementById('aImg').value.trim(),desc=document.getElementById('aDesc').value.trim(),size=document.getElementById('aSize').value.trim()||'N/A',lic=document.getElementById('aLic').value.trim(),url=document.getElementById('aUrl').value.trim(),tags=document.getElementById('aTags').value.trim(),feat=document.getElementById('aFeat').checked,appr=document.getElementById('aAppr').checked;
+  if(!name||!ver||!cat||!desc||!url){toast('Preencha os campos obrigatórios.','error');return;}
+  var v=verifyUrl(url);if(v.blocked){toast('🚫 Link bloqueado: '+v.hname,'error');return;}
+  var app={id:'off_'+Date.now(),name:name,version:ver,cat:cat,icon:ico,img:img,desc:desc,size:size,licenca:lic||'N/A',dev:CU?CU.username:'Admin',url:url,featured:feat,approved:appr,official:true,tags:tags?tags.split(',').map(function(t){return t.trim().toLowerCase();}).filter(Boolean):[cat],downloads:0,rating:0};
+  var ex=gExtraOff();ex.push(app);sExtraOff(ex);
+  toast('✅ App oficial adicionado!','success');renderAll();renderAdmStats();
+  ['aName','aVer','aIco','aImg','aDesc','aSize','aLic','aUrl','aTags'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+}
+
+/* ─── UPLOAD ─── */
+function openUp(){ov('upOv',true);clrM('upMsg');initIconPicker();}
+function closeUp(){ov('upOv',false);}
+document.getElementById('upOv').onclick=function(e){if(e.target===this)closeUp();};
+function prevImg(pid,v){
+  var el=document.getElementById(pid);if(!el)return;
+  if(!v){el.innerHTML='<div class="ph">🖼️<br>Nenhuma imagem</div>';return;}
+  el.innerHTML='<img src="'+esc(v)+'" onerror="this.parentElement.innerHTML=\'<div class=ph>❌ URL inválida</div>\'">';
+}
+function initIconPicker(){
+  var row=document.getElementById('iconRow');if(!row)return;
+  var opts=row.querySelectorAll('.iopt');
+  opts.forEach(function(el){el.onclick=function(){opts.forEach(function(x){x.classList.remove('on');});el.classList.add('on');document.getElementById('upIco').value=el.textContent.trim();};});
+  if(opts[0]){opts[0].classList.add('on');document.getElementById('upIco').value=opts[0].textContent.trim();}
+}
+function selCustomIco(v){if(v.trim()){document.getElementById('iconRow').querySelectorAll('.iopt').forEach(function(x){x.classList.remove('on');});document.getElementById('upIco').value=v.trim();}}
+var _lct;
+function liveUrlChk(v){
+  clearTimeout(_lct);
+  var prev=document.getElementById('upUrlPrev'),stat=document.getElementById('upUrlStat');
+  if(!v){prev.textContent='Cole o link para verificar.';stat.innerHTML='';return;}
+  prev.textContent=v;stat.innerHTML='<span style="color:var(--muted)">⏳ Verificando…</span>';
+  _lct=setTimeout(function(){
+    var r=verifyUrl(v);
+    var col={safe:'var(--ac)',warn:'var(--warn)',danger:'var(--danger)'};
+    var msg={safe:'✅ '+r.icon+' '+r.hname,warn:'⚠️ '+r.hname,danger:'🚫 Bloqueado'};
+    stat.innerHTML='<span style="color:'+col[r.level]+';font-weight:700">'+msg[r.level]+'</span> <span style="color:var(--muted)">Score: '+r.score+'%</span>';
+  },350);
+}
+function submitApp(){
+  clrM('upMsg');
+  var name=document.getElementById('upName').value.trim(),ver=document.getElementById('upVer').value.trim(),cat=document.getElementById('upCat').value,ico=document.getElementById('upIco').value||'📦',img=document.getElementById('upImg').value.trim(),desc=document.getElementById('upDesc').value.trim(),size=document.getElementById('upSize').value.trim()||'N/A',lic=document.getElementById('upLic').value.trim(),url=document.getElementById('upUrl').value.trim(),tags=document.getElementById('upTags').value.trim();
+  if(!name){showM('upMsg','⚠ Informe o nome.','err');return;}
+  if(!ver){showM('upMsg','⚠ Informe a versão.','err');return;}
+  if(!cat){showM('upMsg','⚠ Selecione a categoria.','err');return;}
+  if(!desc||desc.length<20){showM('upMsg','⚠ Descrição muito curta (mín. 20 chars).','err');return;}
+  if(!url){showM('upMsg','⚠ Informe o link de download.','err');return;}
+  var fk={name:name,desc:desc,tags:tags?tags.split(',').map(function(t){return t.trim();}):[]};
+  if(isMod(fk)){showM('upMsg','🚫 MOD/hack/crack detectado e bloqueado automaticamente.','err');return;}
+  var v=verifyUrl(url);
+  if(v.blocked){showM('upMsg','🚫 Link bloqueado: '+(v.checks.find(function(c){return !c.p;})||{m:'URL inválida'}).m,'err');return;}
+  var tagArr=tags?tags.split(',').map(function(t){return t.trim().toLowerCase();}).filter(Boolean).slice(0,8):[cat];
+  var app={id:'c'+Date.now()+'_'+Math.random().toString(36).slice(2,6),name:name,version:ver,cat:cat,icon:ico,img:img,desc:desc,size:size,url:url,tags:tagArr,licenca:lic||'Não informado',dev:CU?CU.username:'Anônimo',downloads:0,rating:0,featured:false,official:false,community:true,approved:false,submittedBy:CU?CU.username:'Anônimo',submittedAt:Date.now(),urlScore:v.score,urlLevel:v.level,urlHost:v.hname};
+  var ca=gCA();ca.unshift(app);sCA(ca);
+  showM('upMsg','✅ App enviado! Aguardando aprovação do admin.','ok');
+  setTimeout(function(){closeUp();renderAll();toast('📤 '+name+' enviado para análise!','success');},1400);
+}
+
+/* ─── RENDER HELPERS ─── */
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function stars(r){if(!r||r===0)return'☆☆☆☆☆';return'★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r));}
+function fmtDL(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1)+'K':String(n);}
+function catLbl(c){var m={jogos:'🎮 Jogos',utilidades:'🔧 Utilidades',educacao:'📚 Educação',musica:'🎵 Música',produtividade:'📋 Produtividade',saude:'❤️ Saúde',social:'💬 Social',fotografia:'📷 Fotografia'};return m[c]||c;}
+function appIcoHtml(a,size){size=size||50;if(a.img)return '<img src="'+esc(a.img)+'" style="width:'+size+'px;height:'+size+'px;border-radius:'+Math.floor(size*.2)+'px;object-fit:cover" onerror="this.style.display=\'none\'">';return a.icon||'📦';}
+function bgG(id){var m={vlc:'135deg,#1a0505,#2a0808',firefox:'135deg,#1a0d00,#2a1600',ankidroid:'135deg,#000a1a,#001a2a',newpipe:'135deg,#0a001a,#1a0028',fdroid:'135deg,#001a0a,#003020',signal:'135deg,#000a0a,#001a20'};return 'linear-gradient('+(m[id]||'135deg,#111825,#1a2030')+')';}
+
+/* ─── RENDER FEATURED ─── */
+function renderFeat(){
+  var g=document.getElementById('gridFeat');
+  var feat=getAllOff().filter(function(a){return a.featured&&a.approved;});
+  document.getElementById('secFeat').style.display=feat.length?'block':'none';
+  g.innerHTML=feat.map(function(a){
+    var modB=isMod(a)?'<div class="fc-bdg mod">⚠ MOD</div>':'';
+    var hotB=!modB&&a.downloads>3e6?'<div class="fc-bdg hot">🔥 HOT</div>':'<div class="fc-bdg new">★ DESTAQUE</div>';
+    var imgH=a.img?'<img src="'+esc(a.img)+'" onerror="this.style.display=\'none\'">':'<span class="fc-ico">'+a.icon+'</span>';
+    return '<div class="fc" onclick="openDetail(\''+a.id+'\',\'official\')">'
+      +'<div class="fc-img" style="'+(a.img?'':'background:'+bgG(a.id))+'">'+imgH+(modB||hotB)+'</div>'
+      +'<div class="fc-body"><div class="fc-name">'+esc(a.name)+'</div><div class="fc-desc">'+esc(a.desc.slice(0,82))+'…</div>'
+      +'<div class="fc-meta"><span class="strs">'+stars(a.rating)+' '+(a.rating||'—')+'</span><span class="dlct">'+fmtDL(a.downloads)+'</span><span class="sz">'+a.size+'</span></div>'
+      +'</div></div>';
+  }).join('');
+}
+
+/* ─── RENDER TOP ─── */
+function renderTop(){
+  var g=document.getElementById('gridTop');
+  var all=getAllOff().concat(gCA().filter(function(a){return a.approved;})).filter(function(a){return a.rating>0;});
+  document.getElementById('secTop').style.display=all.length?'block':'none';
+  if(!all.length)return;
+  all.sort(function(a,b){return b.rating-a.rating;});
+  g.innerHTML=all.slice(0,6).map(function(a,i){
+    var ico=a.img?'<img src="'+esc(a.img)+'" style="width:38px;height:38px;border-radius:8px;object-fit:cover">':a.icon;
+    return '<div class="hlc" onclick="openDetail(\''+a.id+'\',\''+(a.official?'official':'community')+'\')">'
+      +'<div class="hl-rank">#'+(i+1)+'</div><div class="hlc-ico">'+ico+'</div>'
+      +'<div class="hlc-name">'+esc(a.name)+'</div><div class="hlc-strs">'+stars(a.rating)+' '+a.rating+'</div></div>';
+  }).join('');
+}
+
+/* ─── RENDER COMMUNITY ─── */
+function renderComm(){
+  var sec=document.getElementById('secComm'),list=document.getElementById('listComm');
+  var apps=gCA().filter(function(a){return a.approved;});
+  sec.style.display=apps.length?'block':'none';
+  list.innerHTML=apps.map(function(a){return mkAppRow(a,'community');}).join('');
+}
+
+function mkAppRow(a,src){
+  var v=verifyUrl(a.url);
+  var dlC=v.level==='safe'?'':(v.level==='warn'?'wn':'bk');
+  var dlL=v.level==='safe'?'⬇ Baixar':(v.level==='warn'?'⚠ Baixar':'🚫 Bloqueado');
+  var ico=a.img?'<img src="'+esc(a.img)+'" style="width:50px;height:50px;border-radius:10px;object-fit:cover">':a.icon;
+  var commTag=!a.official?'<span style="color:var(--warn);font-size:.63rem;margin-left:.3rem">👥</span>':'';
+  return '<div class="ar'+(isMod(a)?' mod-row':'')+'" onclick="openDetail(\''+a.id+'\',\''+src+'\')">'
+    +'<div class="ar-ico">'+ico+'</div>'
+    +'<div class="ar-info"><div class="ar-name">'+esc(a.name)+commTag+'</div>'
+    +'<div class="ar-cat">'+catLbl(a.cat)+'</div>'
+    +'<div class="ar-sub">'+esc(a.size)+' · v'+esc(a.version)+(a.submittedBy?' · '+esc(a.submittedBy):'')+'</div>'
+    +'</div><div class="ar-right">'
+    +'<span class="strs" style="font-size:.74rem">'+stars(a.rating)+' '+(a.rating||'—')+'</span>'
+    +'<span style="font-size:.66rem;color:var(--muted)">'+fmtDL(a.downloads)+'</span>'
+    +'<button class="dl-btn '+dlC+'" onclick="event.stopPropagation();doDownload(\''+a.id+'\',\''+src+'\')">'+dlL+'</button>'
+    +'</div></div>';
+}
+
+/* ─── FILTER & RENDER ─── */
+var curCat='todos',curQ='';
+function filterRender(){
+  var all=getAllOff().filter(function(a){return a.approved;});
+  var filtered=all.slice();
+  if(curCat!=='todos')filtered=filtered.filter(function(a){return a.cat===curCat;});
+  if(curQ){var q=curQ.toLowerCase();filtered=filtered.filter(function(a){return a.name.toLowerCase().indexOf(q)>-1||a.desc.toLowerCase().indexOf(q)>-1||(a.tags||[]).some(function(t){return t.toLowerCase().indexOf(q)>-1;})||catLbl(a.cat).toLowerCase().indexOf(q)>-1;});}
+  document.getElementById('listTitle').textContent=curQ?'🔍 "'+curQ+'"':curCat==='todos'?'📱 Todos os Apps':catLbl(curCat);
+  var isHome=curCat==='todos'&&!curQ;
+  document.getElementById('secFeat').style.display=isHome?'':'none';
+  document.getElementById('secTop').style.display=isHome?'':'none';
+  if(isHome){renderComm();}else{
+    // show filtered community
+    var commFiltered=gCA().filter(function(a){return a.approved&&(curCat==='todos'||a.cat===curCat)&&(!curQ||a.name.toLowerCase().indexOf(curQ)>-1||a.desc.toLowerCase().indexOf(curQ)>-1);});
+    var sec=document.getElementById('secComm'),list=document.getElementById('listComm');
+    if(commFiltered.length){sec.style.display='block';list.innerHTML=commFiltered.map(function(a){return mkAppRow(a,'community');}).join('');}
+    else{sec.style.display='none';}
+  }
+  var listEl=document.getElementById('appList'),noR=document.getElementById('noRes');
+  if(!filtered.length){listEl.innerHTML='';noR.style.display='block';return;}
+  noR.style.display='none';
+  listEl.innerHTML=filtered.map(function(a){return mkAppRow(a,'official');}).join('');
+}
+function filtCat(c,el){
+  curCat=c;curQ='';document.getElementById('searchIn').value='';
+  document.querySelectorAll('.cc').forEach(function(x){x.classList.remove('on');});
+  if(el)el.classList.add('on');
+  else{var chip=document.querySelector('.cc[data-cat="'+c+'"]');if(chip)chip.classList.add('on');}
+  filterRender();
+}
+function resetView(){
+  curCat='todos';curQ='';document.getElementById('searchIn').value='';
+  document.querySelectorAll('.cc').forEach(function(x,i){x.classList.remove('on');if(i===0)x.classList.add('on');});
+  renderFeat();renderTop();renderComm();filterRender();
+}
+function renderAll(){renderFeat();renderTop();renderComm();filterRender();}
+
+/* ─── SEARCH ─── */
+function liveSearch(q){
+  curQ=q.toLowerCase().trim();filterRender();
+  var drop=document.getElementById('sDrop');
+  if(!curQ){drop.classList.remove('on');return;}
+  var all=getAllOff().concat(gCA().filter(function(a){return a.approved;}));
+  var res=all.filter(function(a){return a.name.toLowerCase().indexOf(curQ)>-1||(a.tags||[]).some(function(t){return t.toLowerCase().indexOf(curQ)>-1;});}).slice(0,6);
+  if(!res.length){drop.classList.remove('on');return;}
+  drop.innerHTML=res.map(function(a){
+    var ico=a.img?'<img class="si-ico" src="'+esc(a.img)+'" style="width:32px;height:32px;border-radius:7px;object-fit:cover">':'<span class="si-ico" style="font-size:1.52rem">'+a.icon+'</span>';
+    return '<div class="si" onclick="openDetail(\''+a.id+'\',\''+(a.official?'official':'community')+'\')">'
+      +ico+'<div><div style="font-weight:700;font-size:.84rem">'+esc(a.name)+'</div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">'+catLbl(a.cat)+' · '+(a.rating||'—')+'⭐'+(a.official?'':' · 👥')+'</div>'
+      +'</div></div>';
+  }).join('');
+  drop.classList.add('on');
+}
+function closeDrop(){document.getElementById('sDrop').classList.remove('on');}
+
+/* ─── APP DETAIL ─── */
+var _dId=null,_dSrc=null;
+function getApp(id,src){return src==='official'?getAllOff().find(function(a){return a.id===id;}):gCA().find(function(a){return a.id===id;});}
+function openDetail(id,src){
+  _dId=id;_dSrc=src;
+  var a=getApp(id,src);if(!a)return;
+  var revs=gRv()[id]||[];
+  var v=verifyUrl(a.url);
+  var vb=uvBadge(v);
+  var dlC=v.level==='safe'?'safe':(v.level==='warn'?'warn':'blocked');
+  var dlL=v.level==='safe'?(v.icon+' Baixar via '+v.hname+' — '+a.size):v.level==='warn'?('⚠️ Baixar (não verificado) — '+a.size):'🚫 Download bloqueado';
+  var comB=!a.official?'<div class="com-ban">👥 Enviado por <strong>'+esc(a.submittedBy||'Anônimo')+'</strong> · Score: '+v.score+'% · '+v.icon+' '+esc(v.hname)+'</div>':'';
+  var modW=isMod(a)?'<div class="uv danger" style="margin-bottom:.65rem"><div class="uv-ico">⚠️</div><div><strong>Possível APK Modificado (MOD)</strong><div style="font-size:.68rem;margin-top:.18rem;opacity:.8">Este app pode conter modificações não oficiais. Proceda com cuidado.</div></div></div>':'';
+  var heroH=a.img?'<div class="d-hero"><img src="'+esc(a.img)+'" onerror="this.parentElement.style.display=\'none\'"></div>':'';
+  var icoH=a.img?'<div class="d-ico"><img src="'+esc(a.img)+'"></div>':'<div class="d-ico" style="font-size:2.4rem">'+a.icon+'</div>';
+  var rvL=revs.length?revs.slice().reverse().map(function(r){return '<div class="rv-card"><div class="rv-user"><span>👤 '+esc(r.user)+'</span><span style="color:var(--star)">'+stars(r.rating)+'</span><span class="rv-ts">'+new Date(r.ts).toLocaleDateString('pt-BR')+'</span></div><div class="rv-txt">'+esc(r.text)+'</div></div>';}).join(''):'<p style="color:var(--muted);font-size:.8rem">Sem avaliações ainda.</p>';
+  var rvF=CU?'<div class="rv-form"><div class="star-row">'+[5,4,3,2,1].map(function(n){return '<input type="radio" name="star" id="sr'+n+'" value="'+n+'"><label for="sr'+n+'">★</label>';}).join('')+'</div><textarea class="fi" id="rvTxt" placeholder="Sua opinião…" style="height:55px;resize:none;margin:0"></textarea><button class="btn-rv" onclick="submitRv(\''+id+'\')">Publicar</button></div>'
+    :'<p style="font-size:.76rem;color:var(--muted);margin-bottom:.65rem">Faça login para avaliar.</p>';
+  document.getElementById('detailBox').innerHTML=
+    '<button class="bx-x" onclick="closeDetail()">✕</button>'
+    +heroH+comB+modW
+    +'<div class="d-hdr">'+icoH+'<div><div class="d-name">'+esc(a.name)+'</div><div class="d-cat">'+catLbl(a.cat)+'</div><div class="d-ver">v'+esc(a.version)+' · '+esc(a.dev||'—')+'</div><div class="d-lic">📜 '+esc(a.licenca||'—')+'</div><div class="strs">'+stars(a.rating)+' '+(a.rating||'Sem avaliações')+'</div></div></div>'
+    +'<div class="dstats"><div class="sb"><div class="sv">'+fmtDL(a.downloads)+'</div><div class="sl">Downloads</div></div><div class="sb"><div class="sv">'+a.size+'</div><div class="sl">Tamanho</div></div><div class="sb"><div class="sv">'+revs.length+'</div><div class="sl">Avaliações</div></div></div>'
+    +vb
+    +'<div class="ad-lbl" style="margin-top:.6rem">Publicidade</div><div class="ad-wrap" style="margin-bottom:.65rem;min-height:90px"><ins class="adsbygoogle" style="display:block;width:100%;height:90px;" data-ad-client="ca-app-pub-4950043631682039" data-ad-slot="5789467279" data-ad-format="banner"></ins></div>'
+    +'<p class="ddesc">'+esc(a.desc)+'</p>'
+    +'<div class="tag-list">'+( a.tags||[]).map(function(t){return '<div class="tag">#'+esc(t)+'</div>';}).join('')+'</div>'
+    +'<button class="dl-main '+dlC+'" onclick="doDownload(\''+id+'\',\''+src+'\')" '+(v.level==='danger'?'disabled':'')+'>'+dlL+'</button>'
+    +'<button class="btn-rpt" onclick="openReport(\''+id+'\')">⚠ Reportar problema</button>'
+    +'<div class="rv-sec"><div class="rv-title">💬 Avaliações</div>'+rvF+'<div id="rvList">'+rvL+'</div></div>';
+  ov('detailOv',true);
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+}
+function closeDetail(){ov('detailOv',false);_dId=null;}
+document.getElementById('detailOv').onclick=function(e){if(e.target===this)closeDetail();};
+
+/* ─── DOWNLOAD ─── */
+function doDownload(id,src){
+  var a=getApp(id,src);if(!a)return;
+  if(!CU){toast('🔒 Faça login para baixar.','info');openAuth();return;}
+  var v=verifyUrl(a.url);
+  if(v.blocked){toast('🚫 Link bloqueado por segurança.','error');return;}
+  showAd(function(){
+    if(v.level==='warn'){if(!confirm('⚠️ Host não totalmente verificado: '+v.host+'\nDeseja continuar?'))return;}
+    a.downloads++;
+    toast(v.icon+' Abrindo '+v.hname+'…','success');
+    window.open(a.url,'_blank','noopener,noreferrer');
+    if(src==='community'){var ca=gCA();var i=ca.findIndex(function(x){return x.id===id;});if(i>-1){ca[i].downloads++;sCA(ca);}}
+  });
+}
+
+/* ─── AD INTERSTITIAL ─── */
+function showAd(cb){
+  var d=document.createElement('div');d.className='ov on';d.style.zIndex='2000';
+  d.innerHTML='<div style="background:var(--card2);border:1px solid var(--border);border-radius:18px;padding:1.7rem;max-width:420px;text-align:center;width:100%;margin:auto"><div style="font-size:.62rem;color:var(--muted);margin-bottom:.42rem;text-transform:uppercase;letter-spacing:1px">Publicidade</div><ins class="adsbygoogle" style="display:block;width:100%;height:250px;" data-ad-client="ca-app-pub-4950043631682039" data-ad-slot="2412853683" data-ad-format="rectangle"></ins><div style="margin-top:.85rem;color:var(--muted);font-size:.82rem">Aguarde <span id="cdN">5</span>s…</div><button id="skipB" disabled style="margin-top:.65rem;padding:.58rem 1.6rem;background:var(--ac);color:#000;font-weight:800;border-radius:9px;opacity:.3;cursor:not-allowed;font-size:.88rem">Continuar ⬇</button></div>';
+  document.body.appendChild(d);
+  window._cb=cb;
+  d.querySelector('#skipB').onclick=function(){d.remove();if(window._cb)window._cb();};
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+  var n=5,t=setInterval(function(){n--;var cd=d.querySelector('#cdN');if(cd)cd.textContent=n;if(n<=0){clearInterval(t);var b=d.querySelector('#skipB');if(b){b.disabled=false;b.style.opacity='1';b.style.cursor='pointer';}}},1000);
+}
+
+/* ─── REVIEWS ─── */
+function submitRv(id){
+  if(!CU){toast('Faça login para avaliar.','info');return;}
+  var sel=document.querySelector('#detailBox input[name="star"]:checked');
+  var txtEl=document.getElementById('rvTxt');if(!txtEl)return;var txt=txtEl.value.trim();
+  if(!sel){toast('Selecione uma nota.','error');return;}
+  if(!txt||txt.length<5){toast('Escreva ao menos 5 caracteres.','error');return;}
+  var rv=gRv();if(!rv[id])rv[id]=[];
+  if(rv[id].find(function(r){return r.user===CU.username;})){toast('Você já avaliou este app.','error');return;}
+  rv[id].push({user:CU.username,rating:+sel.value,text:txt,ts:Date.now()});sRv(rv);
+  var avg=rv[id].reduce(function(s,r){return s+r.rating;},0)/rv[id].length;
+  var off=getAllOff().find(function(a){return a.id===id;});
+  if(off)off.rating=+avg.toFixed(1);
+  else{var ca=gCA();var ci=ca.findIndex(function(a){return a.id===id;});if(ci>-1){ca[ci].rating=+avg.toFixed(1);sCA(ca);}}
+  toast('✅ Avaliação publicada!','success');openDetail(id,_dSrc);
+}
+
+/* ─── REPORT ─── */
+var _rpId=null;
+function openReport(id){_rpId=id;ov('reportOv',true);document.getElementById('rReason').value='';document.getElementById('rDesc').value='';}
+function closeReport(){ov('reportOv',false);}
+document.getElementById('reportOv').onclick=function(e){if(e.target===this)closeReport();};
+function sendReport(){
+  var r=document.getElementById('rReason').value;if(!r){toast('Selecione um motivo.','error');return;}
+  var rps=gRp();rps.push({appId:_rpId,reason:r,desc:document.getElementById('rDesc').value,user:CU?CU.username:'anônimo',ts:Date.now()});sRp(rps);
+  closeReport();toast('✅ Denúncia enviada!','success');
+}
+
+/* ─── TOAST ─── */
+function toast(msg,tp){
+  tp=tp||'info';var ic={success:'✅',error:'❌',info:'ℹ️',warn:'⚠️'};
+  var t=document.createElement('div');t.className='toast '+tp;
+  t.innerHTML='<span>'+(ic[tp]||'ℹ️')+'</span><span>'+esc(msg)+'</span>';
+  document.getElementById('tw').appendChild(t);
+  setTimeout(function(){t.style.animation='tOut .26s ease forwards';setTimeout(function(){t.remove();},260);},3400);
+}
+
+/* ─── COOKIE ─── */
+function initCk(){if(getCk('vs_ck'))document.getElementById('ckBar').classList.add('hidden');}
+function accCk(){setCk('vs_ck','y',365);document.getElementById('ckBar').classList.add('hidden');toast('Preferências salvas.','info');}
+function rejCk(){setCk('vs_ck','n',365);document.getElementById('ckBar').classList.add('hidden');}
+
+/* ─── OV HELPER ─── */
+function ov(id,open){document.getElementById(id).classList[open?'add':'remove']('on');}
+
+/* ─── INIT ─── */
+function init(){
+  initSess();
+  initCk();
+  renderFeat();
+  renderTop();
+  renderComm();
+  filterRender();
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+}
+init();
+
+/* ─── GLOBAL ─── */
+window.openAuth=openAuth;window.closeAuth=closeAuth;window.swTab=swTab;window.doLogin=doLogin;window.doReg=doReg;window.logout=logout;window.delAcc=delAcc;window.togUM=togUM;
+window.filtCat=filtCat;window.resetView=resetView;window.liveSearch=liveSearch;window.closeDrop=closeDrop;
+window.openDetail=openDetail;window.closeDetail=closeDetail;window.doDownload=doDownload;
+window.openReport=openReport;window.closeReport=closeReport;window.sendReport=sendReport;window.submitRv=submitRv;window.toast=toast;
+window.accCk=accCk;window.rejCk=rejCk;
+window.openUp=openUp;window.closeUp=closeUp;window.submitApp=submitApp;window.liveUrlChk=liveUrlChk;window.selCustomIco=selCustomIco;window.chkStr=chkStr;window.initIconPicker=initIconPicker;window.prevImg=prevImg;
+window.openAdmin=openAdmin;window.closeAdmin=closeAdmin;window.doAdminLogin=doAdminLogin;window.swAdmTab=swAdmTab;window.admApprove=admApprove;window.admDel=admDel;window.admFeat=admFeat;window.admEdit=admEdit;window.admSave=admSave;window.admAddOfficialApp=admAddOfficialApp;window.prevImg=prevImg;
+</script>
+</body>
+</html>
